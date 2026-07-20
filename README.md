@@ -1,29 +1,92 @@
-# A Multi-Agent Retrieval-Augmented Framework for Intelligent Resume Screening and Candidate Evaluation
+# Multi-Agent Resume Hiring
 
-## Overview
+This repository contains the implementation of our research project:
 
-This repository contains the implementation of our research work on **AI-powered resume screening and candidate evaluation** using Large Language Models (LLMs).
+**A Multi-Agent Retrieval-Augmented Framework for Intelligent Resume Screening and Candidate Evaluation**
 
-The proposed framework aims to improve automated recruitment by integrating:
+The project proposes three methodologies for intelligent resume screening using Large Language Models (LLMs):
 
-- Multi-Agent Retrieval-Augmented Generation (RAG)
-- Dynamic Domain-Based Weighted Resume Scoring
-- Dynamic Annotator Ground Truth Generation
+- Multi-Agent RAG LLM Resume Evaluation
+- Domain Weighted Resume Scoring
+- Dynamic Annotator Ground Truth
 
-The implementation has been evaluated on the **CareerCorpus** dataset using multiple regression and ranking metrics.
+The implementation is evaluated using the CareerCorpus dataset.
 
 ---
 
-# Proposed Methodologies
+# Repository Structure
 
-## Proposed Method I – Multi-Agent RAG LLM
+```
+Multi-Agent-Resume-Hiring
 
-This methodology implements a Retrieval-Augmented Generation (RAG) based Multi-Agent framework for intelligent resume evaluation.
+│
+├── Multi Agent Rag LLM
+│   ├── Graphs and visualization
+│   │   ├── 01_graph_multiagent.png
+│   │   ├── 02_graph_multiagent.png
+│   │   ├── 03_graph_multiagent.png
+│   │   ├── 04_graph_multiagent.png
+│   │   └── 05_graph_multiagent.png
+│   │
+│   ├── Input files
+│   │   └── CareerCorpus.xlsx
+│   │
+│   ├── Result Metrics
+│   │   └── Screenshot 2026-07-12....
+│   │
+│   ├── output files
+│   │   ├── complete_pipeline_results.json
+│   │   └── evaluation_results.csv
+│   │
+│   └── Updated Multi LLMs resume ...
+│
+├── Domain Weighted Scoring LLM
+│   ├── Graphs and visualization
+│   │   ├── 01_graph_dynamicweight.png
+│   │   ├── 02_graph_dynamicweight.png
+│   │   ├── 03_graph_dynamicweight.png
+│   │   └── 04_graph_dynamicweight.png
+│   │
+│   ├── Input files
+│   │   └── complete_pipeline_results.json
+│   │
+│   ├── Result Metrics
+│   │   └── Screenshot 2026-07-12....
+│   │
+│   ├── output files
+│   │   ├── dynamic_pipeline_results.json
+│   │   └── dynamic_resume_scores.csv
+│   │
+│   └── Updated dynamic weights for...
+│
+├── Annotator dynamic Ground truth
+│   ├── Dynamic domain Dynamic Annotator
+│   │   ├── Graphs and visualization
+│   │   ├── Input files
+│   │   ├── Result Metrics
+│   │   └── output files
+│   │
+│   ├── Multi Agent Rag LLM Dynamic Annotator
+│   │
+│   ├── Single LLM Dynamic Annotator
+│   │
+│   ├── Annotator GroundtruthGT.ipynb
+│   │
+│   └── CareerCorpus_DynamicGT.csv
+│
+└── README.md
+```
+
+---
+
+# Proposed Method I – Multi Agent Rag LLM
+
+This methodology implements a Retrieval-Augmented Generation (RAG) based multi-agent framework for intelligent resume evaluation.
 
 ### Workflow
 
 - Resume Preprocessing
-- FAISS Knowledge Base Creation
+- FAISS Knowledge Base
 - Resume Evaluation Agent
 - CEO Agent
 - CTO Agent
@@ -31,39 +94,24 @@ This methodology implements a Retrieval-Augmented Generation (RAG) based Multi-A
 - Hiring Coordinator
 - Candidate Recommendation
 
-### Technologies
+### Input
 
-- Python
-- OpenRouter API
-- DeepSeek-V3
-- FAISS
-- BAAI BGE Embeddings
-- Pandas
-- NumPy
+- CareerCorpus.xlsx
 
-### Evaluation Metrics
+### Output
 
-- Pearson Correlation
-- Spearman Correlation
-- MAE
-- RMSE
-- R² Score
-- PC20 / SC20
-- PC15 / SC15
-- PC10 / SC10
+- complete_pipeline_results.json
+- evaluation_results.csv
 
 ---
 
-## Proposed Method II – Dynamic Weighted Resume Scoring
+# Proposed Method II – Domain Weighted Scoring LLM
 
-The second methodology introduces a dynamic weighting strategy for resume evaluation.
+This methodology introduces dynamic domain-specific resume scoring.
 
-Instead of assigning equal importance to every resume attribute, the framework dynamically generates feature weights according to:
+Instead of assigning equal importance to every resume feature, the framework dynamically generates weights according to the job domain and job level before computing the final score.
 
-- Job Domain
-- Job Level
-
-The final resume score is calculated using
+The final resume score is computed as
 
 \[
 G(R_j)=\sum_{k=1}^{K}w_kf_k(R_j)
@@ -71,42 +119,52 @@ G(R_j)=\sum_{k=1}^{K}w_kf_k(R_j)
 
 where
 
-- \(f_k(R_j)\) = score of feature \(k\)
-- \(w_k\) = dynamically generated weight
+- \(f_k(R_j)\) is the score of the kth resume feature.
+- \(w_k\) is the dynamically generated feature weight.
 
-### Resume Features
+### Input
 
-- Education
-- Skills
-- Experience
-- Projects
-- Certifications
-- Domain Knowledge
+- complete_pipeline_results.json
 
-Generated weights are cached and reused for resumes belonging to the same job category to reduce API calls.
+### Output
+
+- dynamic_pipeline_results.json
+- dynamic_resume_scores.csv
 
 ---
 
-## Proposed Method III – Dynamic Annotator Ground Truth
+# Proposed Method III – Annotator dynamic Ground truth
 
-Traditional approaches compute the ground truth using the arithmetic mean of multiple annotator scores.
+Traditional evaluation computes the ground truth by averaging multiple annotator scores.
 
-This work proposes a Dynamic Ground Truth generation approach using:
+This methodology proposes a Dynamic Ground Truth generation strategy using
 
-- Sentence-BERT Embeddings
+- Sentence-BERT
 - Semantic Resume Retrieval
 - Median Absolute Deviation (MAD)
 - Dynamic Annotator Weighting
 
-Instead of treating every annotator equally, annotator consistency is estimated and converted into adaptive weights before calculating the final ground truth score.
+Three evaluation pipelines are included:
+
+- Dynamic domain Dynamic Annotator
+- Multi Agent Rag LLM Dynamic Annotator
+- Single LLM Dynamic Annotator
+
+### Input
+
+- CareerCorpus_DynamicGT.csv
+
+### Output
+
+Dynamic evaluation results for all three pipelines.
 
 ---
 
 # Dataset
 
-The experiments were conducted using the **CareerCorpus** dataset.
+CareerCorpus Dataset
 
-Dataset Contents include:
+The dataset contains
 
 - Education
 - Skills
@@ -117,122 +175,15 @@ Dataset Contents include:
 
 ---
 
-# Repository Structure
-
-```
-Multi-Agent-Resume-Hiring
-
-├── Proposed Method I - Multi-Agent RAG LLM
-│   ├── Source Code
-│   ├── Input Files
-│   ├── Output Files
-│   ├── Graphs
-│   └── Result Metrics
-│
-├── Proposed Method II - Dynamic Weighted Scoring
-│   ├── Source Code
-│   ├── Input Files
-│   ├── Output Files
-│   ├── Graphs
-│   └── Result Metrics
-│
-├── Proposed Method III - Dynamic Annotator Ground Truth
-│   ├── Source Code
-│   ├── Input Files
-│   ├── Output Files
-│   ├── Graphs
-│   └── Result Metrics
-│
-└── README.md
-```
-
----
-
-# Installation
-
-Install the required Python packages
-
-```bash
-pip install -r requirements.txt
-```
-
-or install manually
-
-```bash
-pip install pandas
-pip install numpy
-pip install scikit-learn
-pip install sentence-transformers
-pip install faiss-cpu
-pip install openai
-pip install matplotlib
-pip install scipy
-```
-
----
-
-# Running the Project
-
-## Proposed Method I
-
-Run
-
-```
-Method1_MultiAgent_RAG_LLM.ipynb
-```
-
-Outputs
-
-- Resume Evaluation Scores
-- Candidate Recommendations
-- JSON Report
-- Evaluation Metrics
-
----
-
-## Proposed Method II
-
-Run
-
-```
-Method2_Dynamic_Weighted_Scoring.ipynb
-```
-
-Outputs
-
-- Dynamic Feature Weights
-- Dynamic Resume Scores
-- JSON Results
-- CSV Results
-
----
-
-## Proposed Method III
-
-Run
-
-```
-Method3_Dynamic_Annotator_GroundTruth.ipynb
-```
-
-Outputs
-
-- Dynamic Ground Truth
-- Updated Evaluation Metrics
-- JSON Results
-- CSV Results
-
----
-
 # Evaluation Metrics
 
-The proposed methodologies are evaluated using:
+The framework is evaluated using
 
 - Pearson Correlation
 - Spearman Correlation
-- Mean Absolute Error (MAE)
-- Root Mean Square Error (RMSE)
-- Coefficient of Determination (R²)
+- MAE
+- RMSE
+- R² Score
 - PC20
 - SC20
 - PC15
@@ -242,13 +193,18 @@ The proposed methodologies are evaluated using:
 
 ---
 
-# Research Contributions
+# Technologies Used
 
-- Multi-Agent Retrieval-Augmented Resume Evaluation
-- Dynamic Domain-Specific Feature Weight Generation
-- Dynamic Annotator Ground Truth Generation
-- Improved Resume Ranking using Adaptive Scoring
-- Explainable and Transparent Candidate Evaluation
+- Python
+- OpenRouter API
+- DeepSeek-V3
+- FAISS
+- Sentence Transformers
+- BGE Embeddings
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
 
 ---
 
@@ -256,18 +212,15 @@ The proposed methodologies are evaluated using:
 
 **Mateti Karthik**
 
-B.Tech in Computing and Data Science
+B.Tech in Computing and Data Science (2024–2028)
 
 Sai University, Chennai, India
 
----
-
-# Citation
-
-If you use this repository in your research, please cite the corresponding paper once published.
+**Oindrila**
+MSC in Datascience
 
 ---
 
 # License
 
-This project is intended for academic and research purposes.
+This repository is intended for academic and research purposes.
