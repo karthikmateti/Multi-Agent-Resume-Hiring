@@ -210,16 +210,33 @@ The framework is evaluated using
 
 # Authors
 
-**Mateti Karthik**
+1. **Oindrila Chakraborty**  
+   Msc.Data Science (2025-2027)  
+   St.Xavier’s College (Autonomous) Kolkata
 
-B.Tech in Computing and Data Science (2024–2028)
+2. **Mateti Karthik**  
+   B.Tech in Computing and Data Science (2024–2028)  
+   Sai University, Chennai, India
+   
+4. **Kotha Avaneesh Reddy**  
+   B.Tech in Computing and Data Science (2024–2028)  
+   Sai University, Chennai, India
 
-Sai University, Chennai, India
+5. **T. Jaya Chandrika**  
+   5 years integrated Data science   
+   Teri school of advanced studies (New Delhi)
 
-**Oindrila**
-MSC in Datascience
+6. **Sujitha P**  
+   B.tech Artificial Intelligence and Data Science(2024-2028)
+   Sri Eshwar college of Engineering, Coimbatore
 
----
+7. **G Charit**  
+   Btech Computer science 2024-2028
+   Gitam University vizag
+
+8. **Ala Mahesh**  
+   Btech in computer science and engineering (2025-2029)
+   Indian institute of information technology Kottayam, Kottayam
 
 # License
 
