@@ -238,6 +238,8 @@ The framework is evaluated using
    Btech in computer science and engineering (2025-2029)
    Indian institute of information technology Kottayam, Kottayam
 
+# Other GDrive Links
+https://drive.google.com/drive/folders/1Cj54RFmpTh0H1WV5G2ngCRiJ_PijFMas?usp=sharing
 # License
 
 This repository is intended for academic and research purposes.
